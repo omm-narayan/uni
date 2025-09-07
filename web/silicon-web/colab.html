@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborations - Silicon University</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1000;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .header-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .search-bar input {
+            border: none;
+            padding: 8px 12px;
+            width: 200px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            background-color: #2856a3;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-bar button svg {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
+
+        nav {
+            background-color: white;
+            border-top: 1px solid #e5e5e5;
+            padding: 0 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 0;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        nav a {
+            display: block;
+            padding: 18px 25px;
+            text-decoration: none;
+            color: #2856a3;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active {
+            background-color: #f0f0f0;
+            border-bottom-color: #2856a3;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #2856a3, #1e3d70);
+            color: white;
+            text-align: center;
+            padding: 80px 40px;
+        }
+
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .page-header p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .collaborations-section {
+            padding: 80px 40px;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .partner-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            cursor: pointer;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .partner-logo {
+            width: 120px;
+            height: 80px;
+            object-fit: contain;
+            margin: 0 auto 25px;
+            display: block;
+        }
+
+        .partner-card h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .partner-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .collaboration-areas {
+            background-color: #f8f9fa;
+            padding: 80px 40px;
+        }
+
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        .area-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .area-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .area-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #2856a3;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .area-icon svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        .area-card h4 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .area-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .contact-section {
+            background-color: #2856a3;
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .contact-btn {
+            background-color: white;
+            color: #2856a3;
+            padding: 15px 35px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #2856a3;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 10000;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s ease;
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="logo">
+                <a href="#" onclick="redirectTo('home')">
+                    <img src="https://silicon.ac.in/wp-content/themes/sit/assets/img/logo-7.png" style="width: auto; height: 50px;" alt="logo">
+                </a>
+            </div>
+            <div class="header-links">
+                <a href="#" onclick="redirectTo('about')">ABOUT US</a>
+                <a href="https://alumni.silicon.ac.in/" target="_blank">ALUMNI</a>
+                <a href="#" onclick="redirectTo('bhubaneswar')">BHUBANESWAR CAMPUS</a>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search" id="searchInput">
+                    <button onclick="performSearch()">
+                        <svg class="search-icon" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#" onclick="redirectTo('academics')">ACADEMICS</a></li>
+                <li><a href="#" onclick="redirectTo('admissions')">ADMISSIONS</a></li>
+                <li><a href="#" onclick="redirectTo('placements')">PLACEMENTS</a></li>
+                <li><a href="#" onclick="redirectTo('research')">RESEARCH</a></li>
+                <li><a href="#" onclick="redirectTo('entrepreneurship')">ENTREPRENEURSHIP</a></li>
+                <li><a href="#" onclick="redirectTo('campus-life')">CAMPUS LIFE</a></li>
+                <li><a href="#" onclick="redirectTo('collaborations')" class="active">COLLABORATIONS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1>Industry Collaborations</h1>
+        <p>Partnering with world-class technology leaders to provide our students with cutting-edge learning opportunities and real-world experience in emerging technologies.</p>
+    </div>
+
+    <section class="collaborations-section">
+        <div class="section-title">
+            <h2>Our Technology Partners</h2>
+            <p>We collaborate with industry giants to bridge the gap between academic learning and practical application</p>
+        </div>
+
+        <div class="partners-grid">
+            <div class="partner-card" onclick="redirectToPartner('boston-dynamics')">
+                <img src="./boston_dynamics.png" alt="Boston Dynamics" class="partner-logo">
+                <h3>Boston Dynamics</h3>
+                <p>Pioneering robotics research and development. Our partnership enables students to work on advanced robotics projects and gain insights into the future of automation and AI-powered machines.</p>
+            </div>
+
+            <div class="partner-card" onclick="redirectToPartner('amd')">
+                <img src="./amd.png" alt="AMD" class="partner-logo">
+                <h3>AMD</h3>
+                <p>Leading semiconductor innovation with cutting-edge processors and graphics technology. Students gain access to advanced computing resources and learn about high-performance computing architectures.</p>
+            </div>
+
+            <div class="partner-card" onclick="redirectToPartner('nvidia')">
+                <img src="./nvidia.png" alt="NVIDIA" class="partner-logo">
+                <h3>NVIDIA</h3>
+                <p>Revolutionizing AI and graphics computing. Our collaboration provides access to GPU computing resources, AI development tools, and training in deep learning and data science applications.</p>
+            </div>
+
+            <div class="partner-card" onclick="redirectToPartner('intel')">
+                <img src="./intel.png" alt="Intel" class="partner-logo">
+                <h3>Intel</h3>
+                <p>Global leader in semiconductor technology and computing innovation. Partnership includes access to latest processors, development tools, and training in computer architecture and embedded systems.</p>
+            </div>
+
+            <div class="partner-card" onclick="redirectToPartner('google')">
+                <img src="./google.png" alt="Google" class="partner-logo">
+                <h3>Google</h3>
+                <p>Advancing technology and innovation across cloud computing, AI, and software development. Students benefit from Google's educational programs, cloud credits, and mentorship opportunities.</p>
+            </div>
+
+            <div class="partner-card" onclick="redirectToPartner('microsoft')">
+                <img src="./microsoft.png" alt="Microsoft" class="partner-logo">
+                <h3>Microsoft</h3>
+                <p>Empowering digital transformation through cloud computing, AI, and productivity tools. Our partnership provides access to Azure services, development platforms, and industry certifications.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="collaboration-areas">
+        <div class="section-title">
+            <h2>Collaboration Areas</h2>
+            <p>Our partnerships span multiple domains of technology and innovation</p>
+        </div>
+
+        <div class="areas-grid">
+            <div class="area-card">
+                <div class="area-icon">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h4>Research & Development</h4>
+                <p>Joint research projects in AI, robotics, quantum computing, and emerging technologies with real-world applications.</p>
+            </div>
+
+            <div class="area-card">
+                <div class="area-icon">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                </div>
+                <h4>Curriculum Development</h4>
+                <p>Industry-aligned curriculum design ensuring students learn the most relevant and cutting-edge technologies.</p>
+            </div>
+
+            <div class="area-card">
+                <div class="area-icon">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                    </svg>
+                </div>
+                <h4>Student Internships</h4>
+                <p>Premium internship opportunities at leading tech companies providing hands-on industry experience.</p>
+            </div>
+
+            <div class="area-card">
+                <div class="area-icon">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                    </svg>
+                </div>
+                <h4>Technology Access</h4>
+                <p>Access to latest hardware, software, and development tools from our industry partners.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <h3>Interested in Partnering with Us?</h3>
+        <p>Join our growing network of industry collaborators and help shape the future of technology education.</p>
+        <button class="contact-btn" onclick="redirectTo('contact-partnership')">Contact Partnership Team</button>
+    </section>
+
+    <!-- Notification element -->
+    <div id="notification" class="notification"></div>
+
+    <script>
+        // URL mapping for different sections
+        const urlMap = {
+            'home': 'https://silicon.ac.in/',
+            'about': 'https://silicon.ac.in/about-us/',
+            'bhubaneswar': 'https://silicon.ac.in/bhubaneswar-campus/',
+            'academics': 'https://silicon.ac.in/academics/',
+            'admissions': 'https://silicon.ac.in/admissions/',
+            'placements': 'https://silicon.ac.in/placements/',
+            'research': 'https://silicon.ac.in/research/',
+            'entrepreneurship': 'https://silicon.ac.in/entrepreneurship/',
+            'campus-life': 'https://silicon.ac.in/campus-life/',
+            'collaborations': 'https://silicon.ac.in/collaborations/',
+            'contact-partnership': 'https://silicon.ac.in/contact/partnerships/',
+            'search-results': 'https://silicon.ac.in/search/'
+        };
+
+        // Partner URLs
+        const partnerUrls = {
+            'boston-dynamics': 'https://www.bostondynamics.com/',
+            'amd': 'https://www.amd.com/',
+            'nvidia': 'https://www.nvidia.com/',
+            'intel': 'https://www.intel.com/',
+            'google': 'https://www.google.com/',
+            'microsoft': 'https://www.microsoft.com/'
+        };
+
+        // Function to show notification
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Main redirect function
+        function redirectTo(section) {
+            const url = urlMap[section];
+            if (url) {
+                showNotification(`Redirecting to ${section.replace('-', ' ')}...`);
+                setTimeout(() => {
+                    window.open(url, '_blank');
+                }, 1000);
+            } else {
+                showNotification('Page not found!');
+            }
+        }
+
+        // Partner redirect function
+        function redirectToPartner(partner) {
+            const url = partnerUrls[partner];
+            if (url) {
+                showNotification(`Opening ${partner.replace('-', ' ')} website...`);
+                setTimeout(() => {
+                    window.open(url, '_blank');
+                }, 1000);
+            } else {
+                showNotification('Partner website not available!');
+            }
+        }
+
+        // Search functionality
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const query = searchInput.value.trim();
+            
+            if (query) {
+                showNotification(`Searching for: ${query}`);
+                setTimeout(() => {
+                    // Redirect to Silicon University search page with query
+                    const searchUrl = `https://silicon.ac.in/search/?q=${encodeURIComponent(query)}`;
+                    window.open(searchUrl, '_blank');
+                }, 1000);
+                searchInput.value = '';
+            } else {
+                showNotification('Please enter a search term!');
+            }
+        }
+
+        // Enable search on Enter key press
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Alternative redirect methods for different use cases
+        
+        // Immediate redirect (no delay)
+        function immediateRedirect(url) {
+            window.location.href = url;
+        }
+
+        // Redirect with confirmation
+        function confirmRedirect(url, message) {
+            if (confirm(message || 'Are you sure you want to leave this page?')) {
+                window.open(url, '_blank');
+            }
+        }
+
+        // Redirect with custom delay
+        function delayedRedirect(url, delay = 2000) {
+            showNotification(`Redirecting in ${delay/1000} seconds...`);
+            setTimeout(() => {
+                window.open(url, '_blank');
+            }, delay);
+        }
+
+        // Back button functionality
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                redirectTo('home');
+            }
+        }
+
+        // Add some interactive enhancements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click events to collaboration area cards for more info
+            const areaCards = document.querySelectorAll('.area-card');
+            areaCards.forEach((card, index) => {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', function() {
+                    const areas = ['research', 'curriculum', 'internships', 'technology'];
+                    showNotification(`Learn more about ${areas[index]} collaboration...`);
+                    setTimeout(() => {
+                        redirectTo('research'); // Default to research page for demo
+                    }, 1000);
+                });
+            });
+
+            // Add keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey || e.metaKey) {
+                    switch(e.key) {
+                        case 'h':
+                            e.preventDefault();
+                            redirectTo('home');
+                            break;
+                        case 'a':
+                            e.preventDefault();
+                            redirectTo('about');
+                            break;
+                        case '/':
+                            e.preventDefault();
+                            document.getElementById('searchInput').focus();
+                            break;
+                    }
+                }
+                
+                // ESC to go back
+                if (e.key === 'Escape') {
+                    goBack();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+print("*    " * 6)
+print("* COLLEGE : SILICON      *")
+print("* ADDRESS :SILICON HILLS *")
+print("* NEAR DLF BUILDING      *")
+print("* PATIA                  *")
+print("* BHUBANESWAR            *")
+print("* 751024                 *")
+print("*    " * 6)
